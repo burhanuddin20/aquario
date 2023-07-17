@@ -237,7 +237,7 @@ namespace Thirdweb
             else
             {
                 if (chainId == null)
-                    throw new UnityException("Chain ID override required for native platforms!");
+                    throw new UnityException("Chain ID override required for native platforms! ");
                 this.session = new ThirdwebSession(options, chainId.Value, rpc);
             }
         }

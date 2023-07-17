@@ -245,7 +245,7 @@ public class Prefab_ConnectWallet : MonoBehaviour
             _address = await ThirdwebManager.Instance.SDK.wallet.Connect(new WalletConnection(walletProvider, BigInteger.Parse(_currentChainData.chainId), password, email, personalWallet));
             ShowConnectedState();
             OnConnect?.Invoke();
-            StartScreen.GetComponent<StartScreenScript>().toggleStartScreen(ConnectedState, DisconnectedState);
+            StartScreen.GetComponent<StartScreenScript>().toggleStartScreen(ConnectedState, DisconnectedState,_address);
             
         }
         catch (System.Exception e)
