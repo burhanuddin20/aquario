@@ -58,7 +58,7 @@ namespace Thirdweb
 
                 var symbol = await TransactionManager.ThirdwebRead<TokenERC20Contract.SymbolFunction, TokenERC20Contract.SymbolOutputDTO>(contractAddress, new TokenERC20Contract.SymbolFunction());
 
-                Currency c = new Currency(decimals.ReturnValue1.ToString(), name.ReturnValue1, symbol.ReturnValue1);
+                Currency c = new Currency(name.ReturnValue1, symbol.ReturnValue1, decimals.ReturnValue1.ToString());
                 return c;
             }
         }
@@ -199,7 +199,7 @@ namespace Thirdweb
             }
             else
             {
-                return await TransactionManager.ThirdwebWrite(contractAddress, new TokenERC20Contract.TransferFunction() { Amount = BigInteger.Parse(amount.ToWei()) });
+                return await TransactionManager.ThirdwebWrite(contractAddress, new TokenERC20Contract.TransferFunction() { To = to, Amount = BigInteger.Parse(amount.ToWei()) });
             }
         }
 
@@ -385,11 +385,21 @@ namespace Thirdweb
                     new DropERC20Contract.GetClaimConditionByIdFunction() { ConditionId = id.ReturnValue1 }
                 );
 
+                Currency currency = new Currency();
+                try
+                {
+                    await ThirdwebManager.Instance.SDK.GetContract(data.Condition.Currency).ERC20.Get();
+                }
+                catch
+                {
+                    Debug.Log("Could not fetch currency metadata, proceeding without it.");
+                }
+
                 return new ClaimConditions()
                 {
                     availableSupply = (data.Condition.MaxClaimableSupply - data.Condition.SupplyClaimed).ToString(),
                     currencyAddress = data.Condition.Currency,
-                    currencyMetadata = new CurrencyValue() { value = data.Condition.PricePerToken.ToString(), },
+                    currencyMetadata = new CurrencyValue(currency.name, currency.symbol, currency.decimals, data.Condition.PricePerToken.ToString(), data.Condition.PricePerToken.ToString().ToEth()),
                     currentMintSupply = data.Condition.SupplyClaimed.ToString(),
                     maxClaimablePerWallet = data.Condition.QuantityLimitPerWallet.ToString(),
                     maxClaimableSupply = data.Condition.MaxClaimableSupply.ToString(),

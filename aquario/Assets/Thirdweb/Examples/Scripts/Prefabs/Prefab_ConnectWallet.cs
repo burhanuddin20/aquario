@@ -6,7 +6,6 @@ using RotaryHeart.Lib.SerializableDictionary;
 using Thirdweb;
 using TMPro;
 using System.Numerics;
-using Unity.VisualScripting;
 using UnityEngine.Events;
 
 [System.Serializable]
@@ -43,11 +42,6 @@ public class Prefab_ConnectWallet : MonoBehaviour
         WalletProvider.LocalWallet,
         WalletProvider.Hyperplay
     };
-
-    [Header("Connected States")] 
-    public GameObject StartScreen;
-    public GameObject ConnectedState;
-    public GameObject DisconnectedState;
 
     [Header("Additional event callbacks")]
     public UnityEvent OnConnect;
@@ -103,6 +97,8 @@ public class Prefab_ConnectWallet : MonoBehaviour
     private WalletProvider _walletProvider;
     private WalletProvider _personalWalletProvider;
     private string _address;
+    private string _email;
+    private string _password;
 
     private void Start()
     {
@@ -115,9 +111,6 @@ public class Prefab_ConnectWallet : MonoBehaviour
         SwitchNetworkPanel.SetActive(false);
         LocalWalletUISaved.SetActive(false);
         LocalWalletUINew.SetActive(false);
-        
-        ConnectedState.SetActive(false);
-        DisconnectedState.SetActive(true);
 
         ConnectButton.onClick.RemoveAllListeners();
         ConnectButton.onClick.AddListener(() => ToggleConnectPanel(true));
@@ -143,6 +136,9 @@ public class Prefab_ConnectWallet : MonoBehaviour
         OrGameObject.SetActive(usingEmailWallet && usingNormalWallet);
 
         _currentChainData = ThirdwebManager.Instance.supportedChains.Find(x => x.identifier == ThirdwebManager.Instance.chain);
+        _address = null;
+        _email = null;
+        _password = null;
     }
 
     public void ToggleConnectPanel(bool active)
@@ -156,8 +152,6 @@ public class Prefab_ConnectWallet : MonoBehaviour
 
         ConnectPanel.SetActive(false);
 
-        string email = null;
-        string password = null;
         WalletProvider personalWallet = WalletProvider.LocalWallet;
 
         switch (walletProvider)
@@ -172,7 +166,7 @@ public class Prefab_ConnectWallet : MonoBehaviour
                 }
                 else
                 {
-                    email = SupportedWalletsUI[walletProvider].emailInput.text;
+                    _email = SupportedWalletsUI[walletProvider].emailInput.text;
                     break;
                 }
             case WalletProvider.LocalWallet:
@@ -183,7 +177,7 @@ public class Prefab_ConnectWallet : MonoBehaviour
                 return;
         }
 
-        ConnectWallet(walletProvider, password, email, personalWallet);
+        ConnectWallet(walletProvider, _password, _email, personalWallet);
     }
 
     public void ToggleLocalWalletUISaved(bool active)
@@ -192,17 +186,17 @@ public class Prefab_ConnectWallet : MonoBehaviour
         LocalWalletSavedConnectButton.onClick.RemoveAllListeners();
         LocalWalletSavedConnectButton.onClick.AddListener(() =>
         {
-            string password = string.IsNullOrEmpty(LocalWalletSavedPasswordInput.text) ? null : LocalWalletSavedPasswordInput.text;
+            _password = string.IsNullOrEmpty(LocalWalletSavedPasswordInput.text) ? null : LocalWalletSavedPasswordInput.text;
             try
             {
-                Utils.UnlockOrGenerateLocalAccount(BigInteger.Parse(_currentChainData.chainId), password);
+                Utils.UnlockOrGenerateLocalAccount(BigInteger.Parse(_currentChainData.chainId), _password);
             }
             catch (UnityException)
             {
                 LocalWalletSavedPasswordWrong.SetActive(true);
                 return;
             }
-            ConnectWallet(WalletProvider.LocalWallet, password, null, WalletProvider.LocalWallet);
+            ConnectWallet(WalletProvider.LocalWallet, _password, null, WalletProvider.LocalWallet);
             LocalWalletUISaved.SetActive(false);
         });
 
@@ -225,8 +219,8 @@ public class Prefab_ConnectWallet : MonoBehaviour
             if (!Utils.IsWebGLBuild() && Utils.HasStoredAccount())
                 Utils.DeleteLocalAccount();
 
-            string password = string.IsNullOrEmpty(LocalWalletNewPasswordInput.text) ? null : LocalWalletNewPasswordInput.text;
-            ConnectWallet(WalletProvider.LocalWallet, password, null, WalletProvider.LocalWallet);
+            _password = string.IsNullOrEmpty(LocalWalletNewPasswordInput.text) ? null : LocalWalletNewPasswordInput.text;
+            ConnectWallet(WalletProvider.LocalWallet, _password, null, WalletProvider.LocalWallet);
             LocalWalletUINew.SetActive(false);
         });
 
@@ -243,11 +237,8 @@ public class Prefab_ConnectWallet : MonoBehaviour
             _walletProvider = walletProvider;
             _personalWalletProvider = personalWallet;
             _address = await ThirdwebManager.Instance.SDK.wallet.Connect(new WalletConnection(walletProvider, BigInteger.Parse(_currentChainData.chainId), password, email, personalWallet));
-            
             ShowConnectedState();
             OnConnect?.Invoke();
-            StartScreen.GetComponent<StartScreenScript>().toggleStartScreen(ConnectedState, DisconnectedState,_address);
-            
         }
         catch (System.Exception e)
         {
@@ -263,7 +254,7 @@ public class Prefab_ConnectWallet : MonoBehaviour
     {
         Debug.Log($"Connected to: {_address}");
 
-        var chainSprite = NetworkIcons.Find(x => x.chain == _currentChainData.identifier).sprite;
+        var chainSprite = NetworkIcons.Find(x => x.chain == _currentChainData.identifier)?.sprite;
         var walletSprite = SupportedWalletsUI[_walletProvider].sprite;
         var balance = await ThirdwebManager.Instance.SDK.wallet.GetBalance();
 
@@ -341,7 +332,7 @@ public class Prefab_ConnectWallet : MonoBehaviour
         Debug.Log($"Switching to network: {chainData.identifier}...");
         try
         {
-            await ThirdwebManager.Instance.SDK.wallet.SwitchNetwork(int.Parse(chainData.chainId));
+            await ThirdwebManager.Instance.SDK.wallet.SwitchNetwork(BigInteger.Parse(chainData.chainId));
             _currentChainData = chainData;
             SwitchNetworkPanel.SetActive(false);
             ShowConnectedState();
@@ -384,7 +375,7 @@ public class Prefab_ConnectWallet : MonoBehaviour
     private async void ExportWallet()
     {
         Debug.Log("Exporting wallet...");
-        string json = await ThirdwebManager.Instance.SDK.wallet.Export(null);
+        string json = await ThirdwebManager.Instance.SDK.wallet.Export(_password);
         GUIUtility.systemCopyBuffer = json;
         Debug.Log($"Copied wallet to clipboard: {json}");
     }
