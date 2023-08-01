@@ -42,6 +42,10 @@ public class ThirdwebManager : MonoBehaviour
         new ChainData("binance-testnet", "97", null),
     };
 
+    public string clientId = "a586cfdca56adb3c8117b5d4bf3c560a";
+    
+
+
     [Tooltip("The name of your app")]
     public string appName = null;
 

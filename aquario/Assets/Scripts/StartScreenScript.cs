@@ -49,6 +49,8 @@ public class StartScreenScript : MonoBehaviour
             HasNFT.SetActive(true);
             getNFTMedia(contract);
             PlayButton.SetActive(true);
+            
+            // Take the nft that has been saved and use that as a sprite and render it as a sprite
 
         }
         else
@@ -73,9 +75,7 @@ public class StartScreenScript : MonoBehaviour
     {
         NFT nft = await contract.ERC1155.Get("0");
         Prefab_NFT nftPrefabScript = nftPrefab.GetComponent<Prefab_NFT>();
-        print("Loading NFT");
         nftPrefabScript.LoadNFT(nft);
-        print(("Nft LOADING"));
     
     }
     
