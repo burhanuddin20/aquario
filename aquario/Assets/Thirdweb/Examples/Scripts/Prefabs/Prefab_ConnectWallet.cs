@@ -43,6 +43,11 @@ public class Prefab_ConnectWallet : MonoBehaviour
         WalletProvider.Hyperplay
     };
 
+    [Header("Connected States")] 
+    public GameObject StartScreen;
+    public GameObject ConnectedState;
+    public GameObject DisconnectedState;
+
     [Header("Additional event callbacks")]
     public UnityEvent OnConnect;
     public UnityEvent OnDisconnect;
@@ -111,6 +116,9 @@ public class Prefab_ConnectWallet : MonoBehaviour
         SwitchNetworkPanel.SetActive(false);
         LocalWalletUISaved.SetActive(false);
         LocalWalletUINew.SetActive(false);
+        
+        ConnectedState.SetActive(false);
+        DisconnectedState.SetActive(true);
 
         ConnectButton.onClick.RemoveAllListeners();
         ConnectButton.onClick.AddListener(() => ToggleConnectPanel(true));
@@ -239,6 +247,7 @@ public class Prefab_ConnectWallet : MonoBehaviour
             _address = await ThirdwebManager.Instance.SDK.wallet.Connect(new WalletConnection(walletProvider, BigInteger.Parse(_currentChainData.chainId), password, email, personalWallet));
             ShowConnectedState();
             OnConnect?.Invoke();
+            StartScreen.GetComponent<StartScreenScript>().toggleStartScreen(ConnectedState, DisconnectedState,_address);
         }
         catch (System.Exception e)
         {

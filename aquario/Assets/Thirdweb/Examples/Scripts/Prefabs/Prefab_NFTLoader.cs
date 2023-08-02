@@ -63,7 +63,13 @@ public class Prefab_NFTLoader : MonoBehaviour
 
         LoadNFTs();
     }
-
+    
+    public void SetActive(bool isActive)
+    {
+        gameObject.SetActive(isActive);
+        // You might also include code to enable or disable other related objects.
+        
+    }
     public async void LoadNFTs()
     {
         loadingPanel.SetActive(true);
