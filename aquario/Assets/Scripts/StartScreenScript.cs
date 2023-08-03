@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Thirdweb;
 using System.Threading.Tasks;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class StartScreenScript : MonoBehaviour
 {
@@ -15,8 +17,8 @@ public class StartScreenScript : MonoBehaviour
     public LoadNFTs ownedNFTs;
 
     public GameObject characterLoader;
-    public GameObject characterSelecter;
-
+    
+    
     // todo remove this
     //public Prefab_NFTLoader NftLoader;
 
@@ -72,38 +74,7 @@ public class StartScreenScript : MonoBehaviour
         return balance;
     }
 
-
-    // public async Task<string> GetSDKWalletAddress()
-    // {
-    //     string result = await sdk.wallet.GetAddress();
-    //
-    //     return result;
-    //
-    // }
-
-
-    // old method uses the old nft prefab and displays them all 
-
-    // public async void getAllOwnedNFT(Contract contract,string address)
-    // {
-    //     
-    //     // define all the query params
-    //     OwnedQuery ownerCreds = new OwnedQuery();
-    //     ownerCreds.type = NFTType.ERC1155;
-    //     ownerCreds.owner = address;
-    //     ownerCreds.contractAddress = contract.address;
-    //     
-    //     
-    //     // init a new NFT loader 
-    //     Prefab_NFTLoader nftPrefabLoaderScript = NftLoader.GetComponent<Prefab_NFTLoader>();
-    //     
-    //     // in the script add the creds from before
-    //     // unsure if this is necessary
-    //
-    //     nftPrefabLoaderScript.query.loadOwnedNfts = new List<OwnedQuery> {ownerCreds};
-    //
-    // }
-
+    
 
     public async Task getOwnedNFTs()
     {
@@ -116,19 +87,15 @@ public class StartScreenScript : MonoBehaviour
         {
             ownedNFTs.query.loadOwnedNfts = new List<OwnedQuery> { ownerCreds };
             List<NFT> NFTs = await ownedNFTs.LoadImages();
-
-
-            // number of sprites 
-            int NumSprites = NFTs.Count;
-
+            
             // list of Characters
             // todo this should be num sprites
+            // GameObject[] tempCharacters = new GameObject[NFTs.Count];
             // for testing hard count
             GameObject[] tempCharacters = new GameObject[2];
             int i = 0;
 
             foreach (NFT nft in NFTs)
-
             {
                 // get the name 
                 string assetName = nft.metadata.name;
@@ -160,9 +127,18 @@ public class StartScreenScript : MonoBehaviour
             }
 
             tempCharacters[0].SetActive(true);
+            if (characterLoader != null)
+            {
+                Debug.Log("Character Loader found!");
+            }
+            else
+            {
+                Debug.LogError("Character Loader is null!");
+            }
+
             characterLoader.GetComponent<CharacterSelectionScript>().characters = tempCharacters;
             characterLoader.SetActive(true);
-            characterSelecter.SetActive(true);
+            
 
             Debug.Log($"{tempCharacters.Length}");
         }
@@ -171,4 +147,12 @@ public class StartScreenScript : MonoBehaviour
             Debug.Log("OwnedNFT function is null");
         }
     }
+
+
+    public void LoadGame()
+    {
+        CharacterSelectionScript.Instance.DisableUnchosenCharacters();
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
+    }
+
 }
