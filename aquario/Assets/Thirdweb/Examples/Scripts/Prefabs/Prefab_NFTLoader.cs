@@ -43,6 +43,8 @@ public struct OwnedQuery
     public NFTType type;
 }
 
+
+
 public class Prefab_NFTLoader : MonoBehaviour
 {
     [Header("SETTINGS")]
@@ -128,7 +130,7 @@ public class Prefab_NFTLoader : MonoBehaviour
             print($"Error Loading OwnedQuery NFTs: {e.Message}");
         }
 
-        // Load all NFTs into the scene
+    
 
         foreach (NFT nft in nftsToLoad)
         {
