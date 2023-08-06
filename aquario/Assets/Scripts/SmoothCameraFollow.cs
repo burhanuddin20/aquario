@@ -13,7 +13,9 @@ public class SmoothCameraFollow : MonoBehaviour
 
     private void Start()
     {
-        target = GameManager.instance.character.transform;
+        // target = PlayerManager.instance.player.transform;
+        
+        // Set the transform information for the 
     }
 
     // Update is called once per frame
@@ -24,5 +26,11 @@ public class SmoothCameraFollow : MonoBehaviour
         transform.position = positionLerp;
 
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 5 * target.localScale.x, scaleSpeed * Time.deltaTime);
+    }
+    
+    public void SetTarget(GameObject target)
+    {
+        Debug.Log("Setting target");
+        this.target = target.transform;
     }
 }

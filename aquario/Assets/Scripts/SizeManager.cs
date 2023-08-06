@@ -10,9 +10,13 @@ public class SizeManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        currentScale *= 1.05f;
-        GameManager.instance.SpawnFood();
-        Destroy(other.gameObject);
+        if (other.gameObject.CompareTag("Gem"))
+        {
+            Debug.Log($"Food ate scaling");
+            currentScale *= 1.05f;
+            GameManager.instance.SpawnFood();
+            Destroy(other.gameObject);
+        }
     }
 
     void Update()
