@@ -8,6 +8,7 @@ public class MovementScript : MonoBehaviour
     public Camera cam;
     public float speed = 1f;
     
+    
     // Update is called once per frame
     void Update()
     {
@@ -17,5 +18,6 @@ public class MovementScript : MonoBehaviour
         Vector3 newPostion = Vector3.MoveTowards(transform.position, worldInput, speed * Time.deltaTime);
         newPostion.z = transform.position.z;
         transform.position = newPostion;
+        
     }
 }

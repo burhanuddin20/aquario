@@ -21,7 +21,8 @@ public class CharacterSelectionScript : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Another instance of CharacterSelectionScript found on " + gameObject.name + ". Destroying it.");
+            Debug.LogWarning("Another instance of CharacterSelectionScript found on " + gameObject.name +
+                             ". Destroying it.");
             Destroy(gameObject);
         }
 
@@ -54,19 +55,16 @@ public class CharacterSelectionScript : MonoBehaviour
 
         characters[selectedCharacter].SetActive(true);
     }
+
     public void DisableUnchosenCharacters()
     {
         for (int i = 0; i < characters.Length; i++)
         {
-            if (i != selectedCharacter)
-            {
-                characters[i].SetActive(false);
-            }
+            characters[i].SetActive(false);
         }
     }
+    
 
-    
-    
 
 // todo create a load game script
 }

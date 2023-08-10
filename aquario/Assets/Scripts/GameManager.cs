@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     
     public Dictionary<string, PlayerManager> PlayerManagers = new Dictionary<string, PlayerManager>();
 
+    public GameObject claimPrompt;
+
     // Called before start
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        claimPrompt.SetActive(false);
         for (int i = 0; i < 50; i++)
         {
             SpawnFood();

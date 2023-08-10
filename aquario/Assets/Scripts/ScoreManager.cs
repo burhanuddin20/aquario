@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour
     public int gems = 0;
     [SerializeField] private TMPro.TextMeshProUGUI gemScoreText;
 
+    public GameObject claimPrompt;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,4 +18,17 @@ public class ScoreManager : MonoBehaviour
             gemScoreText.text = gems.ToString();
         }
     }
+
+    void Update()
+    {
+        if (gems == 5)
+        {
+            claimPrompt.SetActive(true);
+            
+        }
+
+        
+    }
+    
+    
 }

@@ -40,6 +40,7 @@ namespace Thirdweb
             where TWFunction : FunctionMessage, new()
         {
             var receipt = await ThirdwebWriteRawResult(contractAddress, functionMessage, weiValue, gasOverride);
+            Debug.Log(receipt);
             return receipt.ToTransactionResult();
         }
 
@@ -50,6 +51,21 @@ namespace Thirdweb
 
             functionMessage.FromAddress = await ThirdwebManager.Instance.SDK.wallet.GetAddress();
             functionMessage.AmountToSend = weiValue ?? 0;
+            // Debug.Log("This is just before failure...");
+            // Debug.Log($"contract address{contractAddress}");
+            // Debug.Log($"gas: {functionMessage.Gas.ToString()}");
+            // Debug.Log($"From address: {functionMessage.FromAddress.ToString()}");
+            // Debug.Log($"Nonce: {functionMessage.Nonce.ToString()}");
+            // Debug.Log($"AmountToSend: {functionMessage.AmountToSend.ToString()}");
+            // Debug.Log($"AccessList: {functionMessage.AccessList.ToString()}");
+            // Debug.Log($"Gas Price: {functionMessage.GasPrice.ToString()}");
+            // Debug.Log($"Transaction Type : {functionMessage.TransactionType.ToString()}");
+            // Debug.Log($"Max fees per gas : {functionMessage.MaxFeePerGas.ToString()}");
+            // Debug.Log($"Max Priority fees per gas : {functionMessage.MaxPriorityFeePerGas.ToString()}");
+            // Debug.Log($"Wei value : {weiValue.ToString()}");
+            // Debug.Log($"Gas override : {gasOverride.ToString()}");
+            
+            
 
             if (gasOverride.HasValue)
             {

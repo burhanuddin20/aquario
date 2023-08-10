@@ -43,8 +43,6 @@ public struct OwnedQuery
     public NFTType type;
 }
 
-
-
 public class Prefab_NFTLoader : MonoBehaviour
 {
     [Header("SETTINGS")]
@@ -65,13 +63,7 @@ public class Prefab_NFTLoader : MonoBehaviour
 
         LoadNFTs();
     }
-    
-    public void SetActive(bool isActive)
-    {
-        gameObject.SetActive(isActive);
-        // You might also include code to enable or disable other related objects.
-        
-    }
+
     public async void LoadNFTs()
     {
         loadingPanel.SetActive(true);
@@ -130,7 +122,7 @@ public class Prefab_NFTLoader : MonoBehaviour
             print($"Error Loading OwnedQuery NFTs: {e.Message}");
         }
 
-    
+        // Load all NFTs into the scene
 
         foreach (NFT nft in nftsToLoad)
         {

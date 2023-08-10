@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Nethereum.Contracts.Standards.ERC20.TokenList;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -12,20 +14,25 @@ public class PlayerManager : MonoBehaviour
     public SpriteRenderer character;
 
     public GameObject player;
-    
+
     // player ID
     //public string playerId = Guid.NewGuid().ToString();
 
-    public string playerId; 
+    // TODO fix player id
+    // random
+    public string playerId;
 
+    //Token info
+    public GameObject token;
     Vector3 spawn = new Vector3(0, 0, 0);
 
+    public ScoreManager scoreManager;
 
     // retrieve all the info related to the chosen characters from the CharacterSelectionScript
     private void Awake()
     {
-        //LoadCharacter();
-        LoadCharacterTest();
+        LoadCharacter();
+        //LoadCharacterTest();
         Debug.Log("Character has been loaded");
     }
 
@@ -38,52 +45,64 @@ public class PlayerManager : MonoBehaviour
 
         // spawn the player
         player.transform.position = spawn;
+        token.GetComponent<TokenScript>().GetTokenBalance();
     }
 
-    // void LoadCharacter()
-    //
-    // {
-    //
-    //     int selectedCharacterInt = CharacterSelectionScript.Instance.selectedCharacter;
-    //
-    //     GameObject selectedCharacter = CharacterSelectionScript.Instance.characters[selectedCharacterInt];
-    //     character = selectedCharacter;
-    //     // Set all the necessary components
-    //     
-    //     //First set the sprite render to the chosen character sprite
-    //
-    //     player.GetComponent<SpriteRenderer>().sprite = character.GetComponent<SpriteRenderer>().sprite;
-    //     
-    //     //character.GetComponent<MovementScript>().cam = Camera.main;
-    //     
-    // }
-
-    void LoadCharacterTest()
+    private void Update()
     {
-        // Vector3 spawn = new Vector3(0, 0, 0);
-        // Manual loading for testing only
-        string assetName = "Red";
-        // Load the corresponding asset from the Resources folder
-        GameObject assetPrefab = Resources.Load(assetName) as GameObject;
-        //character = Instantiate(assetPrefab);
-        character = assetPrefab.GetComponent<SpriteRenderer>();
-        SpriteRenderer chosenSprite = character;
+        if (scoreManager.gems == 5)
+        {
+            player.GetComponent<MovementScript>().speed = 0f;
+        }
+    }
+
+    void LoadCharacter()
+
+    {
+        int selectedCharacterInt = CharacterSelectionScript.Instance.selectedCharacter;
+        GameObject chosenNFT = CharacterSelectionScript.Instance.characters[selectedCharacterInt];
+        character = chosenNFT.GetComponent<SpriteRenderer>();
+
+
         Debug.Log($"Chosen sprite info" +
-                  $"color:{chosenSprite.color} sprite {chosenSprite.sprite} sorting order {chosenSprite.sortingOrder}");
-        if (chosenSprite != null)
+                  $"color:{character.color} sprite {character.sprite} sorting order {character.sortingOrder}");
+        if (character != null)
         {
             SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
-            playerSprite.sprite = chosenSprite.sprite;
-            playerSprite.color = chosenSprite.color;
-            playerSprite.sortingOrder = chosenSprite.sortingOrder;
+            playerSprite.sprite = character.sprite;
+            playerSprite.color = character.color;
+            playerSprite.sortingOrder = character.sortingOrder;
         }
         else
         {
             Debug.Log("Chosen sprite info was missing");
         }
-
-        //player.transform.position = spawn;
     }
 
-    
+    // void LoadCharacterTest()
+    // {
+    //     // Vector3 spawn = new Vector3(0, 0, 0);
+    //     // Manual loading for testing only
+    //     string assetName = "Red";
+    //     // Load the corresponding asset from the Resources folder
+    //     GameObject assetPrefab = Resources.Load(assetName) as GameObject;
+    //     //character = Instantiate(assetPrefab);
+    //     character = assetPrefab.GetComponent<SpriteRenderer>();
+    //     SpriteRenderer chosenSprite = character;
+    //     Debug.Log($"Chosen sprite info" +
+    //               $"color:{chosenSprite.color} sprite {chosenSprite.sprite} sorting order {chosenSprite.sortingOrder}");
+    //     if (chosenSprite != null)
+    //     {
+    //         SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
+    //         playerSprite.sprite = chosenSprite.sprite;
+    //         playerSprite.color = chosenSprite.color;
+    //         playerSprite.sortingOrder = chosenSprite.sortingOrder;
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("Chosen sprite info was missing");
+    //     }
+    //
+    //     //player.transform.position = spawn;
+    // }
 }
