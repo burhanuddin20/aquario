@@ -31,8 +31,8 @@ public class PlayerManager : MonoBehaviour
     // retrieve all the info related to the chosen characters from the CharacterSelectionScript
     private void Awake()
     {
-        LoadCharacter();
-        //LoadCharacterTest();
+        //LoadCharacter();
+        LoadCharacterTest();
         Debug.Log("Character has been loaded");
     }
 
@@ -79,30 +79,30 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    // void LoadCharacterTest()
-    // {
-    //     // Vector3 spawn = new Vector3(0, 0, 0);
-    //     // Manual loading for testing only
-    //     string assetName = "Red";
-    //     // Load the corresponding asset from the Resources folder
-    //     GameObject assetPrefab = Resources.Load(assetName) as GameObject;
-    //     //character = Instantiate(assetPrefab);
-    //     character = assetPrefab.GetComponent<SpriteRenderer>();
-    //     SpriteRenderer chosenSprite = character;
-    //     Debug.Log($"Chosen sprite info" +
-    //               $"color:{chosenSprite.color} sprite {chosenSprite.sprite} sorting order {chosenSprite.sortingOrder}");
-    //     if (chosenSprite != null)
-    //     {
-    //         SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
-    //         playerSprite.sprite = chosenSprite.sprite;
-    //         playerSprite.color = chosenSprite.color;
-    //         playerSprite.sortingOrder = chosenSprite.sortingOrder;
-    //     }
-    //     else
-    //     {
-    //         Debug.Log("Chosen sprite info was missing");
-    //     }
-    //
-    //     //player.transform.position = spawn;
-    // }
+    void LoadCharacterTest()
+    {
+        // Vector3 spawn = new Vector3(0, 0, 0);
+        // Manual loading for testing only
+        string assetName = "Red";
+        // Load the corresponding asset from the Resources folder
+        GameObject assetPrefab = Resources.Load(assetName) as GameObject;
+        //character = Instantiate(assetPrefab);
+        character = assetPrefab.GetComponent<SpriteRenderer>();
+        SpriteRenderer chosenSprite = character;
+        Debug.Log($"Chosen sprite info" +
+                  $"color:{chosenSprite.color} sprite {chosenSprite.sprite} sorting order {chosenSprite.sortingOrder}");
+        if (chosenSprite != null)
+        {
+            SpriteRenderer playerSprite = player.GetComponent<SpriteRenderer>();
+            playerSprite.sprite = chosenSprite.sprite;
+            playerSprite.color = chosenSprite.color;
+            playerSprite.sortingOrder = chosenSprite.sortingOrder;
+        }
+        else
+        {
+            Debug.Log("Chosen sprite info was missing");
+        }
+    
+        //player.transform.position = spawn;
+    }
 }
