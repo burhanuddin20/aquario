@@ -703,6 +703,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     WebGL: RH_SerializedDictionary
     iPhone: RH_SerializedDictionary
+    tvOS: RH_SerializedDictionary
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

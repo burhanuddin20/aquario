@@ -21,6 +21,7 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
+        // TODO arbitrary way of ending game
         if (gems == 5)
         {
             claimPrompt.SetActive(true);

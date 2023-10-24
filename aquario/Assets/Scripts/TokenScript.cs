@@ -16,8 +16,7 @@ public class TokenScript : MonoBehaviour
 
     [SerializeField] private TMPro.TextMeshProUGUI tokenBalanceText;
     [SerializeField] public TMPro.TextMeshProUGUI gemsEarnedText;
-
-
+    
     private const string TokenContractAddress = "0x421355DF1bC7554591AdD4878272719ce554B81D";
     
     public int gemsToClaim;

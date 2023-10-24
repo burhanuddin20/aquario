@@ -19,12 +19,6 @@ public class StartScreenScript : MonoBehaviour
     public GameObject characterLoader;
     
     
-    // todo remove this
-    //public Prefab_NFTLoader NftLoader;
-
-    const string abi =
-        "[{\"type\":\"constructor\",\"name\":\"\",\"inputs\":[],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"error\",\"name\":\"OperatorNotAllowed\",\"inputs\":[{\"type\":\"address\",\"name\":\"operator\",\"internalType\":\"address\"}],\"outputs\":[]},{\"type\":\"event\",\"name\":\"ApprovalForAll\",\"inputs\":[{\"type\":\"address\",\"name\":\"account\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"operator\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"bool\",\"name\":\"approved\",\"indexed\":false,\"internalType\":\"bool\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ClaimConditionsUpdated\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"tokenId\",\"indexed\":true,\"internalType\":\"uint256\"},{\"type\":\"tuple[]\",\"name\":\"claimConditions\",\"components\":[{\"type\":\"uint256\",\"name\":\"startTimestamp\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"maxClaimableSupply\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"supplyClaimed\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"quantityLimitPerWallet\",\"internalType\":\"uint256\"},{\"type\":\"bytes32\",\"name\":\"merkleRoot\",\"internalType\":\"bytes32\"},{\"type\":\"uint256\",\"name\":\"pricePerToken\",\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"currency\",\"internalType\":\"address\"},{\"type\":\"string\",\"name\":\"metadata\",\"internalType\":\"string\"}],\"indexed\":false,\"internalType\":\"structIClaimCondition.ClaimCondition[]\"},{\"type\":\"bool\",\"name\":\"resetEligibility\",\"indexed\":false,\"internalType\":\"bool\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ContractURIUpdated\",\"inputs\":[{\"type\":\"string\",\"name\":\"prevURI\",\"indexed\":false,\"internalType\":\"string\"},{\"type\":\"string\",\"name\":\"newURI\",\"indexed\":false,\"internalType\":\"string\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"DefaultRoyalty\",\"inputs\":[{\"type\":\"address\",\"name\":\"newRoyaltyRecipient\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"newRoyaltyBps\",\"indexed\":false,\"internalType\":\"uint256\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Initialized\",\"inputs\":[{\"type\":\"uint8\",\"name\":\"version\",\"indexed\":false,\"internalType\":\"uint8\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"MaxTotalSupplyUpdated\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"tokenId\",\"indexed\":false,\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"maxTotalSupply\",\"indexed\":false,\"internalType\":\"uint256\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"OperatorRestriction\",\"inputs\":[{\"type\":\"bool\",\"name\":\"restriction\",\"indexed\":false,\"internalType\":\"bool\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"OwnerUpdated\",\"inputs\":[{\"type\":\"address\",\"name\":\"prevOwner\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"newOwner\",\"indexed\":true,\"internalType\":\"address\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"PlatformFeeInfoUpdated\",\"inputs\":[{\"type\":\"address\",\"name\":\"platformFeeRecipient\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"platformFeeBps\",\"indexed\":false,\"internalType\":\"uint256\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"PrimarySaleRecipientUpdated\",\"inputs\":[{\"type\":\"address\",\"name\":\"recipient\",\"indexed\":true,\"internalType\":\"address\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RoleAdminChanged\",\"inputs\":[{\"type\":\"bytes32\",\"name\":\"role\",\"indexed\":true,\"internalType\":\"bytes32\"},{\"type\":\"bytes32\",\"name\":\"previousAdminRole\",\"indexed\":true,\"internalType\":\"bytes32\"},{\"type\":\"bytes32\",\"name\":\"newAdminRole\",\"indexed\":true,\"internalType\":\"bytes32\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RoleGranted\",\"inputs\":[{\"type\":\"bytes32\",\"name\":\"role\",\"indexed\":true,\"internalType\":\"bytes32\"},{\"type\":\"address\",\"name\":\"account\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"sender\",\"indexed\":true,\"internalType\":\"address\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RoleRevoked\",\"inputs\":[{\"type\":\"bytes32\",\"name\":\"role\",\"indexed\":true,\"internalType\":\"bytes32\"},{\"type\":\"address\",\"name\":\"account\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"sender\",\"indexed\":true,\"internalType\":\"address\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RoyaltyForToken\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"tokenId\",\"indexed\":true,\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"royaltyRecipient\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"royaltyBps\",\"indexed\":false,\"internalType\":\"uint256\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"SaleRecipientForTokenUpdated\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"tokenId\",\"indexed\":true,\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"saleRecipient\",\"indexed\":false,\"internalType\":\"address\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"TokensClaimed\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"claimConditionIndex\",\"indexed\":true,\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"claimer\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"receiver\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"tokenId\",\"indexed\":false,\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"quantityClaimed\",\"indexed\":false,\"internalType\":\"uint256\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"TokensLazyMinted\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"startTokenId\",\"indexed\":true,\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"endTokenId\",\"indexed\":false,\"internalType\":\"uint256\"},{\"type\":\"string\",\"name\":\"baseURI\",\"indexed\":false,\"internalType\":\"string\"},{\"type\":\"bytes\",\"name\":\"encryptedBaseURI\",\"indexed\":false,\"internalType\":\"bytes\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"TransferBatch\",\"inputs\":[{\"type\":\"address\",\"name\":\"operator\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"from\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"to\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"uint256[]\",\"name\":\"ids\",\"indexed\":false,\"internalType\":\"uint256[]\"},{\"type\":\"uint256[]\",\"name\":\"values\",\"indexed\":false,\"internalType\":\"uint256[]\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"TransferSingle\",\"inputs\":[{\"type\":\"address\",\"name\":\"operator\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"from\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"to\",\"indexed\":true,\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"id\",\"indexed\":false,\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"value\",\"indexed\":false,\"internalType\":\"uint256\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"URI\",\"inputs\":[{\"type\":\"string\",\"name\":\"value\",\"indexed\":false,\"internalType\":\"string\"},{\"type\":\"uint256\",\"name\":\"id\",\"indexed\":true,\"internalType\":\"uint256\"}],\"outputs\":[],\"anonymous\":false},{\"type\":\"function\",\"name\":\"DEFAULT_ADMIN_ROLE\",\"inputs\":[],\"outputs\":[{\"type\":\"bytes32\",\"name\":\"\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"type\":\"address\",\"name\":\"account\",\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"id\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"balanceOfBatch\",\"inputs\":[{\"type\":\"address[]\",\"name\":\"accounts\",\"internalType\":\"address[]\"},{\"type\":\"uint256[]\",\"name\":\"ids\",\"internalType\":\"uint256[]\"}],\"outputs\":[{\"type\":\"uint256[]\",\"name\":\"\",\"internalType\":\"uint256[]\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"burnBatch\",\"inputs\":[{\"type\":\"address\",\"name\":\"account\",\"internalType\":\"address\"},{\"type\":\"uint256[]\",\"name\":\"ids\",\"internalType\":\"uint256[]\"},{\"type\":\"uint256[]\",\"name\":\"values\",\"internalType\":\"uint256[]\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"claim\",\"inputs\":[{\"type\":\"address\",\"name\":\"_receiver\",\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"_tokenId\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"_quantity\",\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"_currency\",\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"_pricePerToken\",\"internalType\":\"uint256\"},{\"type\":\"tuple\",\"name\":\"_allowlistProof\",\"components\":[{\"type\":\"bytes32[]\",\"name\":\"proof\",\"internalType\":\"bytes32[]\"},{\"type\":\"uint256\",\"name\":\"quantityLimitPerWallet\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"pricePerToken\",\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"currency\",\"internalType\":\"address\"}],\"internalType\":\"structIDrop1155.AllowlistProof\"},{\"type\":\"bytes\",\"name\":\"_data\",\"internalType\":\"bytes\"}],\"outputs\":[],\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"claimCondition\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"uint256\",\"name\":\"currentStartId\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"count\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"contractType\",\"inputs\":[],\"outputs\":[{\"type\":\"bytes32\",\"name\":\"\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"contractURI\",\"inputs\":[],\"outputs\":[{\"type\":\"string\",\"name\":\"\",\"internalType\":\"string\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"contractVersion\",\"inputs\":[],\"outputs\":[{\"type\":\"uint8\",\"name\":\"\",\"internalType\":\"uint8\"}],\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"getActiveClaimConditionId\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_tokenId\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getBaseURICount\",\"inputs\":[],\"outputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getBatchIdAtIndex\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_index\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getClaimConditionById\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_tokenId\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"_conditionId\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"tuple\",\"name\":\"condition\",\"components\":[{\"type\":\"uint256\",\"name\":\"startTimestamp\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"maxClaimableSupply\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"supplyClaimed\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"quantityLimitPerWallet\",\"internalType\":\"uint256\"},{\"type\":\"bytes32\",\"name\":\"merkleRoot\",\"internalType\":\"bytes32\"},{\"type\":\"uint256\",\"name\":\"pricePerToken\",\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"currency\",\"internalType\":\"address\"},{\"type\":\"string\",\"name\":\"metadata\",\"internalType\":\"string\"}],\"internalType\":\"structIClaimCondition.ClaimCondition\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getDefaultRoyaltyInfo\",\"inputs\":[],\"outputs\":[{\"type\":\"address\",\"name\":\"\",\"internalType\":\"address\"},{\"type\":\"uint16\",\"name\":\"\",\"internalType\":\"uint16\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getPlatformFeeInfo\",\"inputs\":[],\"outputs\":[{\"type\":\"address\",\"name\":\"\",\"internalType\":\"address\"},{\"type\":\"uint16\",\"name\":\"\",\"internalType\":\"uint16\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getRoleAdmin\",\"inputs\":[{\"type\":\"bytes32\",\"name\":\"role\",\"internalType\":\"bytes32\"}],\"outputs\":[{\"type\":\"bytes32\",\"name\":\"\",\"internalType\":\"bytes32\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getRoleMember\",\"inputs\":[{\"type\":\"bytes32\",\"name\":\"role\",\"internalType\":\"bytes32\"},{\"type\":\"uint256\",\"name\":\"index\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"address\",\"name\":\"member\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getRoleMemberCount\",\"inputs\":[{\"type\":\"bytes32\",\"name\":\"role\",\"internalType\":\"bytes32\"}],\"outputs\":[{\"type\":\"uint256\",\"name\":\"count\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getRoyaltyInfoForToken\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_tokenId\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"address\",\"name\":\"\",\"internalType\":\"address\"},{\"type\":\"uint16\",\"name\":\"\",\"internalType\":\"uint16\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getSupplyClaimedByWallet\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_tokenId\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"_conditionId\",\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"_claimer\",\"internalType\":\"address\"}],\"outputs\":[{\"type\":\"uint256\",\"name\":\"supplyClaimedByWallet\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"grantRole\",\"inputs\":[{\"type\":\"bytes32\",\"name\":\"role\",\"internalType\":\"bytes32\"},{\"type\":\"address\",\"name\":\"account\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"hasRole\",\"inputs\":[{\"type\":\"bytes32\",\"name\":\"role\",\"internalType\":\"bytes32\"},{\"type\":\"address\",\"name\":\"account\",\"internalType\":\"address\"}],\"outputs\":[{\"type\":\"bool\",\"name\":\"\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"hasRoleWithSwitch\",\"inputs\":[{\"type\":\"bytes32\",\"name\":\"role\",\"internalType\":\"bytes32\"},{\"type\":\"address\",\"name\":\"account\",\"internalType\":\"address\"}],\"outputs\":[{\"type\":\"bool\",\"name\":\"\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"initialize\",\"inputs\":[{\"type\":\"address\",\"name\":\"_defaultAdmin\",\"internalType\":\"address\"},{\"type\":\"string\",\"name\":\"_name\",\"internalType\":\"string\"},{\"type\":\"string\",\"name\":\"_symbol\",\"internalType\":\"string\"},{\"type\":\"string\",\"name\":\"_contractURI\",\"internalType\":\"string\"},{\"type\":\"address[]\",\"name\":\"_trustedForwarders\",\"internalType\":\"address[]\"},{\"type\":\"address\",\"name\":\"_saleRecipient\",\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"_royaltyRecipient\",\"internalType\":\"address\"},{\"type\":\"uint128\",\"name\":\"_royaltyBps\",\"internalType\":\"uint128\"},{\"type\":\"uint128\",\"name\":\"_platformFeeBps\",\"internalType\":\"uint128\"},{\"type\":\"address\",\"name\":\"_platformFeeRecipient\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"isApprovedForAll\",\"inputs\":[{\"type\":\"address\",\"name\":\"account\",\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"operator\",\"internalType\":\"address\"}],\"outputs\":[{\"type\":\"bool\",\"name\":\"\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"isTrustedForwarder\",\"inputs\":[{\"type\":\"address\",\"name\":\"forwarder\",\"internalType\":\"address\"}],\"outputs\":[{\"type\":\"bool\",\"name\":\"\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"lazyMint\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_amount\",\"internalType\":\"uint256\"},{\"type\":\"string\",\"name\":\"_baseURIForTokens\",\"internalType\":\"string\"},{\"type\":\"bytes\",\"name\":\"_data\",\"internalType\":\"bytes\"}],\"outputs\":[{\"type\":\"uint256\",\"name\":\"batchId\",\"internalType\":\"uint256\"}],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"maxTotalSupply\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"multicall\",\"inputs\":[{\"type\":\"bytes[]\",\"name\":\"data\",\"internalType\":\"bytes[]\"}],\"outputs\":[{\"type\":\"bytes[]\",\"name\":\"results\",\"internalType\":\"bytes[]\"}],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"type\":\"string\",\"name\":\"\",\"internalType\":\"string\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"nextTokenIdToMint\",\"inputs\":[],\"outputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"operatorRestriction\",\"inputs\":[],\"outputs\":[{\"type\":\"bool\",\"name\":\"\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"owner\",\"inputs\":[],\"outputs\":[{\"type\":\"address\",\"name\":\"\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"primarySaleRecipient\",\"inputs\":[],\"outputs\":[{\"type\":\"address\",\"name\":\"\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"renounceRole\",\"inputs\":[{\"type\":\"bytes32\",\"name\":\"role\",\"internalType\":\"bytes32\"},{\"type\":\"address\",\"name\":\"account\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"revokeRole\",\"inputs\":[{\"type\":\"bytes32\",\"name\":\"role\",\"internalType\":\"bytes32\"},{\"type\":\"address\",\"name\":\"account\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"royaltyInfo\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"tokenId\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"salePrice\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"address\",\"name\":\"receiver\",\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"royaltyAmount\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"safeBatchTransferFrom\",\"inputs\":[{\"type\":\"address\",\"name\":\"from\",\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"to\",\"internalType\":\"address\"},{\"type\":\"uint256[]\",\"name\":\"ids\",\"internalType\":\"uint256[]\"},{\"type\":\"uint256[]\",\"name\":\"amounts\",\"internalType\":\"uint256[]\"},{\"type\":\"bytes\",\"name\":\"data\",\"internalType\":\"bytes\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"safeTransferFrom\",\"inputs\":[{\"type\":\"address\",\"name\":\"from\",\"internalType\":\"address\"},{\"type\":\"address\",\"name\":\"to\",\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"id\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"amount\",\"internalType\":\"uint256\"},{\"type\":\"bytes\",\"name\":\"data\",\"internalType\":\"bytes\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"saleRecipient\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"address\",\"name\":\"\",\"internalType\":\"address\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"setApprovalForAll\",\"inputs\":[{\"type\":\"address\",\"name\":\"operator\",\"internalType\":\"address\"},{\"type\":\"bool\",\"name\":\"approved\",\"internalType\":\"bool\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setClaimConditions\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_tokenId\",\"internalType\":\"uint256\"},{\"type\":\"tuple[]\",\"name\":\"_conditions\",\"components\":[{\"type\":\"uint256\",\"name\":\"startTimestamp\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"maxClaimableSupply\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"supplyClaimed\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"quantityLimitPerWallet\",\"internalType\":\"uint256\"},{\"type\":\"bytes32\",\"name\":\"merkleRoot\",\"internalType\":\"bytes32\"},{\"type\":\"uint256\",\"name\":\"pricePerToken\",\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"currency\",\"internalType\":\"address\"},{\"type\":\"string\",\"name\":\"metadata\",\"internalType\":\"string\"}],\"internalType\":\"structIClaimCondition.ClaimCondition[]\"},{\"type\":\"bool\",\"name\":\"_resetClaimEligibility\",\"internalType\":\"bool\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setContractURI\",\"inputs\":[{\"type\":\"string\",\"name\":\"_uri\",\"internalType\":\"string\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setDefaultRoyaltyInfo\",\"inputs\":[{\"type\":\"address\",\"name\":\"_royaltyRecipient\",\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"_royaltyBps\",\"internalType\":\"uint256\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setMaxTotalSupply\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_tokenId\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"_maxTotalSupply\",\"internalType\":\"uint256\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setOperatorRestriction\",\"inputs\":[{\"type\":\"bool\",\"name\":\"_restriction\",\"internalType\":\"bool\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setOwner\",\"inputs\":[{\"type\":\"address\",\"name\":\"_newOwner\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setPlatformFeeInfo\",\"inputs\":[{\"type\":\"address\",\"name\":\"_platformFeeRecipient\",\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"_platformFeeBps\",\"internalType\":\"uint256\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setPrimarySaleRecipient\",\"inputs\":[{\"type\":\"address\",\"name\":\"_saleRecipient\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setRoyaltyInfoForToken\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_tokenId\",\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"_recipient\",\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"_bps\",\"internalType\":\"uint256\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setSaleRecipientForToken\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_tokenId\",\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"_saleRecipient\",\"internalType\":\"address\"}],\"outputs\":[],\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"supportsInterface\",\"inputs\":[{\"type\":\"bytes4\",\"name\":\"interfaceId\",\"internalType\":\"bytes4\"}],\"outputs\":[{\"type\":\"bool\",\"name\":\"\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"symbol\",\"inputs\":[],\"outputs\":[{\"type\":\"string\",\"name\":\"\",\"internalType\":\"string\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"uint256\",\"name\":\"\",\"internalType\":\"uint256\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"uri\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_tokenId\",\"internalType\":\"uint256\"}],\"outputs\":[{\"type\":\"string\",\"name\":\"\",\"internalType\":\"string\"}],\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"verifyClaim\",\"inputs\":[{\"type\":\"uint256\",\"name\":\"_conditionId\",\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"_claimer\",\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"_tokenId\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"_quantity\",\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"_currency\",\"internalType\":\"address\"},{\"type\":\"uint256\",\"name\":\"_pricePerToken\",\"internalType\":\"uint256\"},{\"type\":\"tuple\",\"name\":\"_allowlistProof\",\"components\":[{\"type\":\"bytes32[]\",\"name\":\"proof\",\"internalType\":\"bytes32[]\"},{\"type\":\"uint256\",\"name\":\"quantityLimitPerWallet\",\"internalType\":\"uint256\"},{\"type\":\"uint256\",\"name\":\"pricePerToken\",\"internalType\":\"uint256\"},{\"type\":\"address\",\"name\":\"currency\",\"internalType\":\"address\"}],\"internalType\":\"structIDrop1155.AllowlistProof\"}],\"outputs\":[{\"type\":\"bool\",\"name\":\"isOverride\",\"internalType\":\"bool\"}],\"stateMutability\":\"view\"}]";
-
     private string addressSDK;
 
     private Contract Contract;
@@ -44,19 +38,22 @@ public class StartScreenScript : MonoBehaviour
     {
         ConnectedState.SetActive(true);
         DisconnectedState.SetActive(false);
-        Contract = sdk.GetContract("0x6b807f9610BD44BF8b01970Be9Ff70BA26A8359a", abi);
+        // move this to a different class any everything can be hidden
+        Contract = sdk.GetContract("0xF27Ab5d5e71c165A69879c7fE3eef103d5707f3e");
+        
+        
+        //todo rename 
+        List<NFT> owned = await CheckBalance(address, Contract);
+        print("NFT balance: " + owned.Count);
 
-        string stringBalance = await checkBalance(address, Contract);
-        float floatBalance = float.Parse(stringBalance);
-
-
-        if (floatBalance > 0)
+        if (owned.Count > 0)
         {
             HasNFT.SetActive(true);
-            //getAllOwnedNFT(contract,address);
-            Debug.Log("Getting all NFTs.....");
+            Debug.Log("Loading all NFTs.....");
             //todo add some loading text or indicator
-            await getOwnedNFTs();
+
+            LoadingNFTs(owned);
+            
 
             PlayButton.SetActive(true);
         }
@@ -66,89 +63,69 @@ public class StartScreenScript : MonoBehaviour
         }
     }
 
-    public async Task<string> checkBalance(string address, Contract contract)
+    
+    public async Task<List<NFT>> CheckBalance(string address,Contract contract)
     {
-        //todo  need to update this as we want to check other NFTs not just token id 0 
-        string balance = await contract.Read<string>("balanceOf", address, 1);
-
-        return balance;
+        var nfts = await contract.ERC1155.GetOwned(address);
+        return nfts;
     }
 
-    
-
-    public async Task getOwnedNFTs()
+    public void LoadingNFTs(List<NFT> nfts)
     {
-        // define all the query params
-        OwnedQuery ownerCreds = new OwnedQuery();
-        ownerCreds.type = NFTType.ERC1155;
-        ownerCreds.owner = addressSDK;
-        ownerCreds.contractAddress = Contract.address;
-        if (ownedNFTs != null)
+        GameObject[] tempCharacters = new GameObject[nfts.Count];
+        int i = 0;
+    
+        foreach (NFT nft in nfts)
         {
-            ownedNFTs.query.loadOwnedNfts = new List<OwnedQuery> { ownerCreds };
-            List<NFT> NFTs = await ownedNFTs.LoadImages();
-            
-            // list of Characters
-            // todo this should be num sprites
-            // GameObject[] tempCharacters = new GameObject[NFTs.Count];
-            // for testing hard count
-            GameObject[] tempCharacters = new GameObject[2];
-            int i = 0;
-
-            foreach (NFT nft in NFTs)
+            string assetName = nft.metadata.name;
+            Debug.Log(assetName);
+        
+            if (string.IsNullOrEmpty(assetName))
             {
-                // get the name 
-                string assetName = nft.metadata.name;
-                Debug.Log(assetName);
-
-                if (string.IsNullOrEmpty(assetName))
-                {
-                    Debug.LogWarning("Asset name is null or empty!");
-                    return;
-                }
-
-                // Load the corresponding asset from the Resources folder
-                GameObject assetPrefab = Resources.Load(assetName) as GameObject;
-
-                if (assetPrefab == null)
-                {
-                    Debug.LogWarning($"Asset with name {assetName} not found in Resources folder!");
-                    continue; // Move onto next asset
-                }
-
-                GameObject characterInstance = Instantiate(assetPrefab);
-                characterInstance.transform.position = new Vector3(0, -0.4f, 0);
-                characterInstance.transform.localScale = new Vector3(2.7f, 2.7f, 1);
-
-                tempCharacters[i] = characterInstance;
-                i++;
-
-                // save this into a list we can pass into character selection
+                Debug.LogWarning("Asset name is null or empty!");
+                continue; // Skip this NFT and continue with the next one
             }
-
-            tempCharacters[0].SetActive(true);
-            if (characterLoader != null)
+        
+            // Load the corresponding asset from the Resources folder
+            GameObject assetPrefab = Resources.Load<GameObject>(assetName);
+        
+            if (assetPrefab == null)
             {
-                Debug.Log("Character Loader found!");
+                Debug.LogWarning($"Asset with name {assetName} not found in Resources folder!");
+                continue; // Move onto the next asset
+            }
+        
+            GameObject characterInstance = Instantiate(assetPrefab);
+            characterInstance.transform.position = new Vector3(0, -0.4f, 0);
+            characterInstance.transform.localScale = new Vector3(2.7f, 2.7f, 1);
+
+            tempCharacters[i] = characterInstance;
+            i++;
+        }
+    
+        if (characterLoader != null)
+        {
+            Debug.Log("Character Loader found!");
+            CharacterSelectionScript characterSelection = characterLoader.GetComponent<CharacterSelectionScript>();
+            if (characterSelection != null)
+            {
+                characterSelection.characters = tempCharacters;
+                characterLoader.SetActive(true);
             }
             else
             {
-                Debug.LogError("Character Loader is null!");
+                Debug.LogError("Character Selection Script not found on the Character Loader!");
             }
-
-            characterLoader.GetComponent<CharacterSelectionScript>().characters = tempCharacters;
-            characterLoader.SetActive(true);
-            
-
-            Debug.Log($"{tempCharacters.Length}");
         }
         else
         {
-            Debug.Log("OwnedNFT function is null");
+            Debug.LogError("Character Loader is null!");
         }
+
+        Debug.Log($"Temporary characters: {tempCharacters.Length}");
     }
 
-
+    
     public void LoadGame()
     {
         CharacterSelectionScript.Instance.DisableUnchosenCharacters();
